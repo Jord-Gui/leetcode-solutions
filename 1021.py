@@ -1,7 +1,7 @@
 # Remove Outermost Parentheses
 
 def removeOuterParentheses(S: str) -> str:
-    primitives = []
+    primitives = ""
     parity = 0
     current_primitive = ""
     for bracket in S:
@@ -11,14 +11,9 @@ def removeOuterParentheses(S: str) -> str:
         else:
             parity -= 1
         if parity == 0:
-            primitives.append(current_primitive)
+            primitives += current_primitive[1:len(current_primitive)-1]
             current_primitive = ""
-    for i in range(len(primitives)):
-        primitives[i] = primitives[i][1:len(primitives[i])-1]
-    ret_val = ""
-    for brackets in primitives:
-        ret_val += brackets
-    return ret_val
+    return primitives
 
 print(removeOuterParentheses("(()())(())"))
 print(removeOuterParentheses("(()())(())(()(()))"))
